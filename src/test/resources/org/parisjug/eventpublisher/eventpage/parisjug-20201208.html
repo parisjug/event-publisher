@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://www.parisjug.org/xwiki/wiki/oldversion/view/Meeting/20201208 -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./parisjug-20201208_files/analytics.js"></script><script>(function(){function kzZmj() {
+  //<![CDATA[
+  window.tIJohio = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.FkfOdvp = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // default spoofed location
+    window.OsXSc = true;
+    window.ogqXz = 38.883333;
+    window.SsJvB = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.OsXSc !== 'undefined')) {
+      if (window.OsXSc === true) {
+        window.CCkibwk({
+          coords: {
+            latitude: window.ogqXz,
+            longitude: window.SsJvB,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.tIJohio(window.CCkibwk, window.nwDMRuj, window.WPsvL);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.OsXSc !== 'undefined')) {
+      if (window.OsXSc === true) {
+        navigator.getCurrentPosition(window.bCZPVQC, window.AuWbufr, window.wAaQU);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.FkfOdvp(window.bCZPVQC, window.AuWbufr, window.wAaQU);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.CCkibwk = successCallback;
+    window.nwDMRuj = errorCallback;
+    window.WPsvL = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.bCZPVQC = successCallback;
+    window.AuWbufr = errorCallback;
+    window.wAaQU = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${kzZmj}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'mAzDPof':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.ogqXz = message.info.coords.lat;
+          window.SsJvB = message.info.coords.lon;
+          window.OsXSc = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}kzZmj();})()</script>
+
+<title>Soirée Virtuelle: Le Java nouveau est arrivé : Java SE 15 (2020/12/08) (Meeting.20201208) - XWiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="/xwiki/resources/icons/xwiki/favicon.ico">
+<link rel="icon" href="/xwiki/resources/icons/xwiki/favicon16.png" type="image/png">
+<link rel="icon" href="/xwiki/resources/icons/xwiki/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/xwiki/resources/icons/xwiki/favicon144.png">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="imagetoolbar" content="no">
+<link rel="alternate" type="application/x-wiki" title="Edit" href="/xwiki/wiki/oldversion/edit/Meeting/20201208">
+<link rel="canonical" href="/xwiki/wiki/oldversion/view/Meeting/20201208">
+<meta name="document" content="Meeting.20201208">
+<meta name="wiki" content="oldversion">
+<meta name="space" content="Meeting">
+<meta name="page" content="20201208">
+<meta name="version" content="26.1">
+<meta name="restURL" content="/xwiki/rest/wikis/oldversion/spaces/Meeting/pages/20201208">
+<meta name="form_token" content="TzYvPx5ly2Y0WlE5F4KqqQ">
+<meta name="gwt:property" content="locale=en">
+<meta name="revisit-after" content="7 days">
+<meta name="description" content="Soirée Virtuelle: Le Java nouveau est arrivé : Java SE 15 (2020/12/08)">
+<meta name="keywords" content="wiki">
+<meta name="distribution" content="GLOBAL">
+<meta name="rating" content="General">
+<meta name="author" content="sunix sunix">
+<meta http-equiv="reply-to" content="">
+<meta name="language" content="en">
+<link rel="alternate" type="application/rss+xml" title="Wiki Feed RSS" href="/xwiki/wiki/oldversion/view/Main/WebRss?xpage=rdf">
+<link rel="alternate" type="application/rss+xml" title="Blog RSS Feed" href="/xwiki/wiki/oldversion/view/Blog/GlobalBlogRss?xpage=plain">
+<link href="./parisjug-20201208_files/style.css" rel="stylesheet" type="text/css" media="all">
+<link href="./parisjug-20201208_files/print.css" rel="stylesheet" type="text/css" media="print">
+<!--[if IE]>
+  <link href="/xwiki/wiki/oldversion/skin/skins/flamingo/ie%2Dall.css?skin=XWiki.DefaultSkin&#38;colorTheme=oldversion%3AFlamingoThemes.FlamingoDefaultTheme" rel="stylesheet" type="text/css" />
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/xwiki-min.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/searchSuggest.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/suggestPicker.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/userPicker.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/tags.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/comments.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/upload.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/attachments.css"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/pagination.css">
+<link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/Style"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/Settings"><link rel="stylesheet" type="text/css" href="./parisjug-20201208_files/SharePage">
+<script type="text/javascript" src="./parisjug-20201208_files/require.js"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/prototype.js"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/effects.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/xwiki-min.js"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/searchSuggest.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/suggestPicker.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/userPicker.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/tags.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/comments.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/upload.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/attachments.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/Settings(1)" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/GoogleAnalyticsCode" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/Script" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/SharePage(1)" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/compatibility.js" defer="defer"></script>
+<script type="text/javascript" src="./parisjug-20201208_files/markerScript.js" defer="defer"></script>
+<!--[if lt IE 9]>
+    <script src="/xwiki/wiki/oldversion/webjars/resources/path?value=html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script type="text/javascript" src="/xwiki/wiki/oldversion/webjars/resources/path?value=respond/1.4.2/dest/respond.min.js" defer="defer"></script>
+<![endif]-->
+<script type="text/javascript">
+// <![CDATA[
+require.config({
+  paths: {
+    'jquery': '/xwiki/wiki/oldversion/webjars/resources/path?value=jquery/1.11.1/jquery.min.js',
+    'bootstrap': '/xwiki/wiki/oldversion/webjars/resources/path?value=bootstrap/3.2.0/js/bootstrap.min.js'
+  },
+  shim: {
+    'bootstrap' : ['jquery']
+  },
+  map: {
+    '*': {
+      'jquery': 'jQueryNoConflict'
+    },
+    'jQueryNoConflict': {
+      'jquery': 'jquery'
+    },
+  }
+});
+define('jQueryNoConflict', ['jquery'], function ($) {
+    return $.noConflict();
+});
+if (Prototype.BrowserFeatures.ElementExtensions) {
+  require(['jquery', 'bootstrap'], function ($) {
+    // Fix incompatibilities between BootStrap and Prototype
+    var disablePrototypeJS = function (method, pluginsToDisable) {
+      var handler = function (event) {
+        event.target[method] = undefined;
+        setTimeout(function () {
+            delete event.target[method];
+        }, 0);
+      };
+      pluginsToDisable.each(function (plugin) { 
+          $(window).on(method + '.bs.' + plugin, handler); 
+      });
+    },
+    pluginsToDisable = ['collapse', 'dropdown', 'modal', 'tooltip'];
+    disablePrototypeJS('show', pluginsToDisable);
+    disablePrototypeJS('hide', pluginsToDisable);
+  });
+}
+XWiki.webapppath = "xwiki/";
+XWiki.servletpath = "wiki/oldversion/";
+XWiki.contextPath = "/xwiki";
+XWiki.mainWiki = "xwiki";
+XWiki.currentWiki = "oldversion";
+XWiki.currentSpace = "Meeting";
+XWiki.currentPage = "20201208";
+XWiki.editor = "";
+XWiki.viewer = "";
+XWiki.contextaction = "view";
+XWiki.docisnew = false;
+XWiki.docsyntax = "xwiki/2.1";
+XWiki.docvariant = "";
+XWiki.blacklistedSpaces = [  ];
+XWiki.hasEdit = true;
+XWiki.hasProgramming = true;
+XWiki.hasBackupPackImportRights = true;
+XWiki.hasRenderer = true;
+window.docviewurl = "/xwiki/wiki/oldversion/view/Meeting/20201208";
+window.docediturl = "/xwiki/wiki/oldversion/edit/Meeting/20201208";
+window.docsaveurl = "/xwiki/wiki/oldversion/save/Meeting/20201208";
+window.docgeturl = "/xwiki/wiki/oldversion/get/Meeting/20201208";
+// ]]>
+</script>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./parisjug-20201208_files/path"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstrap" src="./parisjug-20201208_files/path(1)"></script><script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
+<body id="body" class="skin-flamingo wiki-oldversion space-Meeting viewbody  content panel-left-width-Medium panel-right-width-Medium">
+<div id="xwikimaincontainer">
+<div id="xwikimaincontainerinner">
+<div id="menuview">
+<div class="navbar navbar-default actionmenu">
+<div class="container-fluid">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#xwikimainmenu">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<div id="companylogo">
+<a href="/xwiki/wiki/oldversion/view/Main/" title="Home" rel="home" class="navbar-brand">
+<img src="./parisjug-20201208_files/LogoBJCP_black_2015_0150x0060.png" alt="Wiki Logo">
+</a>
+</div>
+</div>
+<div class="collapse navbar-collapse" id="xwikimainmenu">
+<ul class="nav navbar-nav navbar-right">
+<form class="navbar-form navbar-left globalsearch" role="search" action="/xwiki/wiki/oldversion/view/Main/Search">
+<div class="input-group">
+<input type="text" name="text" class="form-control" placeholder="search..." id="headerglobalsearchinput" autocomplete="off">
+<span class="input-group-btn">
+<button type="submit" class="btn btn-primary">
+<span class="glyphicon glyphicon-search"></span><span class="sr-only">Go</span>
+</button>
+</span>
+</div>
+</form>
+<li class="dropdown text-left" id="tmUser">
+<a href="/xwiki/bin/view/XWiki/sunix" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" title="Profile: sunix sunix"><span class="glyphicon glyphicon-user"></span> sunix sunix <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class=""><a href="/xwiki/bin/view/XWiki/sunix" id="tmProfile" title="Profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+<li class=""><a href="/xwiki/bin/view/XWiki/sunix?category=preferences" id="tmUserPreferences" title="Preferences"><span class="glyphicon glyphicon-wrench"></span> Preferences</a></li>
+<li class=""><a href="/xwiki/bin/view/XWiki/sunix?category=watchlist" id="tmWatchlistManager" title="Watchlist"><span class="glyphicon glyphicon-eye-open"></span> Watchlist</a></li>
+<li class=""><a href="/xwiki/bin/view/XWiki/sunix?category=network" id="tmUserNetwork" title="Network"><span class="glyphicon glyphicon-globe"></span> Network</a></li>
+<li class=""><a href="/xwiki/bin/view/XWiki/sunix?category=wikis" id="tmUserWikis" title="Wikis"><span class="glyphicon glyphicon-list"></span> Wikis</a></li>
+<li class=""><a href="/xwiki/bin/view/XWiki/sunix?category=dashboard" id="tmUserDashboard" title="My dashboard"><span class="glyphicon glyphicon-th"></span> My dashboard</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/wiki/oldversion/logout/XWiki/XWikiLogout?xredirect=%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FMeeting%2F20201208" id="tmLogout" title="Log-out"><span class="glyphicon glyphicon-log-out"></span> Log-out</a></li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav">
+<li class="divider"></li>
+<li class="dropdown text-left" id="tmMainWiki">
+<a href="/xwiki/bin/view/Main/" class="dropdown-toggle " data-toggle="dropdown" title="Home"><span class="glyphicon glyphicon-home"></span> Home <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class=""><a href="/xwiki/bin/view/Main/" title="Go to Wiki"><span class="glyphicon glyphicon-arrow-right"></span> Go to Wiki</a></li>
+<li class=""><a href="/xwiki/bin/admin/XWiki/XWikiPreferences" id="tmAdminWiki" title="Administration"><span class="glyphicon glyphicon-wrench"></span> Administration</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/bin/view/WikiManager/" id="tmWikiIndex" title="Wiki Index"><span class="glyphicon glyphicon-list"></span> Wiki Index</a></li>
+<li class=""><a href="/xwiki/bin/view/Main/AllDocs" id="tmWikiDocumentIndex" title="Document Index"><span class="glyphicon glyphicon-book"></span> Document Index</a></li>
+<li class=""><a href="/xwiki/bin/view/Main/UserDirectory" id="tmMainUserIndex" title="User Index"><span class="glyphicon glyphicon-user"></span> User Index</a></li>
+</ul>
+</li>
+<li class="divider"></li>
+<li class="dropdown text-left" id="tmWiki">
+<a href="/xwiki/wiki/oldversion/view/Main/" class="dropdown-toggle " data-toggle="dropdown" title="Wiki: Paris Jug Web Site"><span class="glyphicon glyphicon-globe"></span> Paris Jug Web Site <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class=""><a href="/xwiki/wiki/oldversion/view/Main/" title="Go to Wiki"><span class="glyphicon glyphicon-arrow-right"></span> Go to Wiki</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=watch&amp;do=addwiki&amp;xredirect=%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FMeeting%2F20201208" id="tmWatchWiki" title="Watch Wiki"><span class="glyphicon glyphicon-eye-open"></span> Watch Wiki</a></li>
+<li class="hidden"><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=watch&amp;do=removewiki&amp;xredirect=%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FMeeting%2F20201208" id="tmUnwatchWiki" title="Unwatch Wiki"><span class="glyphicon glyphicon-eye-close"></span> Unwatch Wiki</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/admin/XWiki/XWikiPreferences" id="tmAdminWiki" title="Administer wiki"><span class="glyphicon glyphicon-wrench"></span> Administer wiki</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Main/AllDocs" id="tmWikiDocumentIndex" title="Document Index"><span class="glyphicon glyphicon-book"></span> Document Index</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/bin/view/WikiManager/DeleteWiki?wikiId=oldversion" id="tmDeleteWiki" title="Delete"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
+</ul>
+</li>
+<li class="divider"></li>
+<li class="dropdown text-left" id="tmSpace">
+<a href="/xwiki/wiki/oldversion/view/Meeting/" class="dropdown-toggle " data-toggle="dropdown" title="Space: Meeting"><span class="glyphicon glyphicon-folder-open"></span> Meeting <b class="caret"></b></a>
+ <ul class="dropdown-menu">
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/" title="Go to Space"><span class="glyphicon glyphicon-arrow-right"></span> Go to Space</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=watch&amp;do=addspace&amp;xredirect=%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FMeeting%2F20201208" id="tmWatchSpace" title="Watch Space"><span class="glyphicon glyphicon-eye-open"></span> Watch Space</a></li>
+<li class="hidden"><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=watch&amp;do=removespace&amp;xredirect=%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FMeeting%2F20201208" id="tmUnwatchSpace" title="Unwatch Space"><span class="glyphicon glyphicon-eye-close"></span> Unwatch Space</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/admin/Meeting/WebPreferences" id="tmAdminSpace" title="Administer Space"><span class="glyphicon glyphicon-wrench"></span> Administer Space</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Main/SpaceIndex?space=Meeting" id="tmSpaceDocumentIndex" title="Document Index"><span class="glyphicon glyphicon-book"></span> Document Index</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/wiki/oldversion/deletespace/Meeting/WebHome" id="tmSpaceDelete" title="Delete"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
+</ul>
+</li>
+<li class="divider"></li>
+<li class="dropdown text-left" id="tmPage">
+<a href="/xwiki/wiki/oldversion/view/Meeting/20201208" class="dropdown-toggle " data-toggle="dropdown" title="Page: 20201208"><span class="glyphicon glyphicon-file"></span> 20201208 <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208" title="Go to Page"><span class="glyphicon glyphicon-arrow-right"></span> Go to Page</a></li>
+<li class="hidden"><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=watch&amp;do=adddocument&amp;xredirect=%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FMeeting%2F20201208" id="tmWatchDocument" title="Watch Page"><span class="glyphicon glyphicon-eye-open"></span> Watch Page</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=watch&amp;do=removedocument&amp;xredirect=%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FMeeting%2F20201208" id="tmUnwatchDocument" title="Unwatch Page"><span class="glyphicon glyphicon-eye-close"></span> Unwatch Page</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=copy" id="tmActionCopy" title="Copy"><span class="glyphicon glyphicon-share"></span> Copy</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=rename&amp;step=1" id="tmActionRename" title="Rename"><span class="glyphicon glyphicon-edit"></span> Rename</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/delete/Meeting/20201208" id="tmActionDelete" title="Delete"><span class="glyphicon glyphicon-remove"></span> Delete</a></li>
+</ul>
+</li>
+<div class="navbar-form navbar-left">
+<div class="btn-group text-left" id="tmCreate">
+<a href="/xwiki/wiki/oldversion/create/Meeting/20201208" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add</a>
+<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+<span class="caret"></span>
+<span class="sr-only">Toggle Dropdown</span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li class=""><a href="/xwiki/wiki/oldversion/create/Meeting/20201208" id="tmCreatePage" title="Page"><span class="glyphicon glyphicon-file"></span> Page</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/create/Meeting/20201208?tocreate=space" id="tmCreateSpace" title="Space"><span class="glyphicon glyphicon-folder-open"></span> Space</a></li>
+<li class=""><a href="/xwiki/bin/view/WikiManager/CreateWiki" id="tmCreateWiki" title="Wiki"><span class="glyphicon glyphicon-globe"></span> Wiki</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/XWiki/OfficeImporter?&amp;parent=Meeting.20201208" id="tmCreatePageFromOffice" title="Page from Office"><span class="glyphicon glyphicon-import"></span> Page from Office</a></li>
+</ul>
+</div>
+</div>
+</ul>
+</div> </div> </div>
+</div>
+<div id="headerglobal">
+<div id="globallinks">
+</div> <div class="clearfloats"></div>
+</div>
+<div class="content" id="contentcontainer">
+<div id="contentcontainerinner">
+<div class="leftsidecolumns">
+<div id="contentcolumn">
+<div class="main">
+<div id="mainContentArea">
+<div class="xcontent">
+<div class="row document-header">
+<div class="document-info col-xs-12 col-md-7">
+<div id="document-title"><h1>Soirée Virtuelle: Le Java nouveau est arrivé : Java SE 15 (2020/12/08)</h1></div>
+<div class="xdocLastModification">
+Last modified by <span class="wikilink"><a href="/xwiki/bin/view/XWiki/sunix">sunix sunix</a></span> on 2020/11/30 22:59
+</div>
+</div>
+<div class="document-menu col-xs-12 col-md-5">
+<div id="contentmenu" class="pull-right actionmenu">
+<a href="/xwiki/wiki/oldversion/edit/Meeting/20201208" class="btn btn-primary" role="button" id="tmEdit"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+<div class="btn-group text-left" id="tmMoreActions">
+<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> More actions <span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu">
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208" id="tmExport" title="Export" data-toggle="modal" data-target="#exportModal"><span class="glyphicon glyphicon-download-alt"></span> Export</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=print" id="tmPrintPreview" title="Print preview"><span class="glyphicon glyphicon-print"></span> Print preview</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?viewer=code" id="tmViewSource" title="View Source"><span class="glyphicon glyphicon-search"></span> View Source</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?viewer=share" id="tmActionShare" title="Share by email"><span class="glyphicon glyphicon-envelope"></span> Share by email</a></li>
+<li class="divider"></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?viewer=comments" title="Comments"><span class="glyphicon glyphicon-comment"></span> Comments</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?viewer=attachments" title="Attachments"><span class="glyphicon glyphicon-paperclip"></span> Attachments</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?viewer=history" title="History"><span class="glyphicon glyphicon-time"></span> History</a></li>
+<li class=""><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?viewer=information" title="Information"><span class="glyphicon glyphicon-info-sign"></span> Information</a></li>
+</ul>
+</div>
+<div class="modal fade text-left" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h4 class="modal-title" id="exportModalLabel">Export</h4>
+</div>
+<div class="modal-body">
+<a href="/xwiki/wiki/oldversion/view/Meeting/20201208?xpage=pdfoptions&amp;qs=" class="btn btn-primary">Export as PDF</a>
+<a href="/xwiki/wiki/oldversion/export/Meeting/20201208?format=html" class="btn btn-primary">Export as HTML</a>
+<a href="/xwiki/wiki/oldversion/export/Meeting/20201208?format=xar&amp;name=Meeting.20201208&amp;pages=Meeting.20201208" class="btn btn-primary">Export as XAR</a>
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class="row">
+<div id="xwikicontent" class="col-xs-12">
+<div id="title"><h1 id="HLeJavanouveauestarrivE9:JavaSE15"><span>Le Java nouveau est arrivé : Java SE 15</span></h1></div><h2 id="HDateetlieu"><span>Date et lieu</span></h2><span class="edit_section"><a href="/xwiki/wiki/oldversion/edit/Meeting/20201208?section=1" style="text-decoration: none;">Edit</a></span><ul><li><strong><div id="datetime">Mardi 8 décembre 2020 à 19h00</div></strong></li><li><div id="location">Dans les locaux de notre chaîne <span class="wikiexternallink"><a href="https://www.twitch.tv/parisjug">Twitch</a></span></div></li><li><span class="wikiexternallink"><a href="https://www.google.com/calendar/render?action=TEMPLATE&amp;text=Paris+JUG+-+Soir%C3%A9e+Virtuelle%3A+Le+Java+nouveau+est+arriv%C3%A9+%3A+Java+SE+15+%282020%2F12%2F08%29&amp;details=%3Cp%3E+%3Cstrong%3E18h45+%C3%A0+19h00+%3A+Accueil%3C%2Fstrong%3E+%3C%2Fp%3E%0A%3Cp%3E%3C%2Fp%3E+%0A%3Cstrong%3E19h00+%C3%A0+20h00+%3A+Le+Java+nouveau+est+arriv%C3%A9+%3A+Java+SE+15%3C%2Fstrong%3E%0A%3Cp%3EJava+a+f%C3%AAt%C3%A9+ses+25+ans+cette+ann%C3%A9e.+En+application+du+rythme+de+releases+semestrielles%2C+Java+15+a+%C3%A9t%C3%A9+diffus%C3%A9+le+15+septembre+2020.+%3Cbr%3ELe+but+de+cette+session+est+de+faire+un+tour+d%C3%A9taill%C3%A9+des+derni%C3%A8res+nouveaut%C3%A9s+%3A%3C%2Fp%3E%0A%3Cul%3E%0A+%3Cli%3Eles+nouvelles+fonctionnalit%C3%A9s%3C%2Fli%3E%0A+%3Cli%3Eles+fonctionnalit%C3%A9s+mises+%C3%A0+jour%3C%2Fli%3E%0A+%3Cli%3Eles+fonctionnalit%C3%A9s+qui+deviennent+standard+ou+production+ready%3C%2Fli%3E%0A+%3Cli%3Eles+fonctionnalit%C3%A9s+qui+restent+en+preview+ou+en+incubator%3C%2Fli%3E%0A+%3Cli%3Eles+fonctionnalit%C3%A9s+qui+sont+d%C3%A9pr%C3%A9ci%C3%A9es+ou+supprim%C3%A9es%3C%2Fli%3E%0A%3C%2Ful%3E%0A%3Cp%3Epar+%3Cspan+class%3D%22wikilink%22%3E%3Ca+href%3D%22%2Fxwiki%2Fwiki%2Foldversion%2Fview%2FSpeaker%2FDoudouxJeanMichel%22%3EJean-Michel+Doudoux%3C%2Fa%3E%3C%2Fspan%3E%3C%2Fp%3E&amp;location=bouhs%3A%2F%2Fwww.twitch.tv%2Fparisjug&amp;dates=20201208T174500Z%2F20201208T191500Z">Google Calendar</a></span></li></ul><hr><h2 id="HDE9tails"><span>Détails</span></h2><span class="edit_section"><a href="/xwiki/wiki/oldversion/edit/Meeting/20201208?section=2" style="text-decoration: none;">Edit</a></span><p>
+</p><div id="details">
+<p>
+<strong>18h45 à 19h00 : Accueil</strong>
+</p><p>
+<strong>19h00 à 20h00 : Le Java nouveau est arrivé : Java SE 15</strong></p><p>Java a fêté ses 25 ans cette année. En application du rythme de releases semestrielles, Java 15 a été diffusé le 15 septembre 2020.
+<br>Le but de cette session est de faire un tour détaillé des dernières nouveautés :</p><ul><li>les nouvelles fonctionnalités</li><li>les fonctionnalités mises à jour</li><li>les fonctionnalités qui deviennent standard ou production ready</li><li>les fonctionnalités qui restent en preview ou en incubator</li><li>les fonctionnalités qui sont dépréciées ou supprimées</li></ul><p>par <span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Speaker/DoudouxJeanMichel">Jean-Michel Doudoux</a></span></p>
+</div><p></p><h2 id="HSponsorsdel27association"><span>Sponsors de l'association</span></h2><span class="edit_section"><a href="/xwiki/wiki/oldversion/edit/Meeting/20201208?section=3" style="text-decoration: none;">Edit</a></span><br>
+<ul><li><strong>Platinium</strong></li></ul>
+<center><span class="wikiexternallink"><a href="http://www.novencia.fr/"><img src="./parisjug-20201208_files/novencia.svg" width="200" alt="Novencia"></a></span>
+<span class="wikiexternallink"><a href="https://group.renault.com/talents/nos-metiers/digital/"><img src="./parisjug-20201208_files/renault-digital.svg" width="200" alt="renault-digital"></a></span><span class="wikiexternallink"><a href="http://www.softeam.fr/"><img src="./parisjug-20201208_files/softeamgroup.svg" width="200" alt="Softeam"></a></span>
+<br>
+<span class="wikiexternallink"><a href="https://www.redhat.com/fr/global/france"><img src="./parisjug-20201208_files/Logo-RedHat-B-Color-RGB.svg" width="200" alt="RedHat"></a></span>
+<span class="wikiexternallink"><a href="http://www.mirakl.com/"><img src="./parisjug-20201208_files/mirakl.svg" width="200" alt="Mirakl"></a></span>
+<br>
+<span class="wikiexternallink"><a href="http://www.arolla.fr/"><img src="./parisjug-20201208_files/arolla.svg" width="200" alt="Arolla"></a></span>
+<span class="wikiexternallink"><a href="http://www.codeworks.fr/"><img src="./parisjug-20201208_files/codeworks.svg" width="200" alt="Codeworks"></a></span>
+<span class="wikiexternallink"><a href="http://www.oxiane.com/"><img src="./parisjug-20201208_files/oxiane.svg" width="200" alt="Oxiane"></a></span></center>
+<br>
+<ul><li><strong>Gold</strong></li></ul>
+<center>
+<span class="wikiexternallink"><a href="https://www.maplr.co/"><img src="./parisjug-20201208_files/maplr.svg" width="120" alt="Maplr"></a></span>
+</center>
+<br><h2 id="HCodedeConduite"><span>Code de Conduite</span></h2><span class="edit_section"><a href="/xwiki/wiki/oldversion/edit/Meeting/20201208?section=4" style="text-decoration: none;">Edit</a></span>Les conférences ParisJUG se veulent des expériences sans harcèlement, quel que soit votre sexe, votre identité sexuelle, votre âge, votre orientation sexuelle, votre handicap, votre apparence physique, votre poids, votre race ou votre religion. Nous ne tolérons aucun harcèlement des participants à la conférence, quel que soit sa forme. Les expressions et les images à connotation sexuelle ne sont pas appropriées lors des événements ou sur les médias en ligne. Les participants à une conférence qui violent ces règles peuvent être sanctionnés, voire exclus de la conférence.
+</div>
+</div>
+</div>
+<div class="clearfloats"></div>
+</div> <div id="xdocFooter">
+<div class="doc-tags" id="xdocTags">
+Tags:
+<div class="tag-tool tag-add"><a href="/xwiki/wiki/oldversion/view/Meeting/20201208?showTagAddForm=true#xdocTags" title="Add tags">[+]</a></div>
+</div>
+<div id="xdocAuthors">
+<div class="xdocCreation"> Created by <span class="wikilink"><a href="/xwiki/bin/view/XWiki/sunix">sunix sunix</a></span> on 2020/11/29 13:58<br>
+</div>
+</div>
+</div>
+<div id="xwikidata">
+<div id="docextraanchors">
+<span id="Commentsanchor">&nbsp;</span><span id="Attachmentsanchor">&nbsp;</span><span id="Historyanchor">&nbsp;</span><span id="Informationanchor">&nbsp;</span></div>
+<div id="xwikidatacontents">
+<div class="floatcontainer" id="docExtraTabs">
+<ul class="xwikitabbar" id="docExtrasTabsUl">
+<li id="Commentstab" class="active">
+<a id="Commentslink" href="/xwiki/wiki/oldversion/view/Meeting/20201208#Comments">
+Comments <span class="itemCount">(0)</span> </a>
+</li>
+<li id="Attachmentstab">
+<a id="Attachmentslink" href="/xwiki/wiki/oldversion/view/Meeting/20201208#Attachments">
+Attachments <span class="itemCount">(0)</span> </a>
+</li>
+<li id="Historytab">
+<a id="Historylink" href="/xwiki/wiki/oldversion/view/Meeting/20201208#History">
+History </a>
+</li>
+<li id="Informationtab">
+<a id="Informationlink" href="/xwiki/wiki/oldversion/view/Meeting/20201208#Information">
+Information </a>
+</li>
+</ul>
+</div>
+<div id="docextrapanes" class="">
+<div id="Commentspane" class=""><div id="commentscontent" class="xwikiintracontent">
+<div id="_comments">
+<p class="noitems">No comments for this document</p>
+<form action="/xwiki/wiki/oldversion/commentadd/Meeting/20201208?xpage=view&amp;viewer=comments#commentform" method="post" id="AddComment">
+<fieldset id="commentform">
+<legend class="sr-only">Add comment</legend>
+<div class="commentavatar"> <img class="avatar avatar_50" src="./parisjug-20201208_files/noavatar.png" alt="sunix sunix" title="sunix sunix"></div>
+<label><span class="wikilink"><a href="/xwiki/bin/view/XWiki/sunix">sunix sunix</a></span> says:</label>
+<input type="hidden" name="XWiki.XWikiComments_author" value="xwiki:XWiki.sunix">
+<input type="hidden" name="form_token" value="TzYvPx5ly2Y0WlE5F4KqqQ">
+<input type="hidden" name="XWiki.XWikiComments_date" value="">
+<input type="hidden" name="XWiki.XWikiComments_replyto" value="">
+<div class="commentcontainer">
+<label for="XWiki.XWikiComments_comment">Comment</label>
+<div class="commentcontent commentPreview" style="display: none;"></div><textarea id="XWiki.XWikiComments_comment" rows="5" cols="80" name="XWiki.XWikiComments_comment"></textarea>
+</div>
+<div><span class="buttonwrapper"><input type="button" class="button" value="Preview"></span>
+<input type="submit" value="Add comment" class="btn btn-primary">
+<a class="cancel btn btn-default" href="/xwiki/wiki/oldversion/view/Meeting/20201208">Cancel</a>
+</div>
+</fieldset>
+</form>
+<span class="hidden"></span></div> </div></div>
+<div id="Attachmentspane" class="hidden empty"></div>
+<div id="Historypane" class="hidden empty"></div>
+<div id="Informationpane" class="hidden empty"></div>
+</div>
+<script type="text/javascript">
+      var hashviewer = self.document.location.hash.substring(1);
+                                                var extraInit = function(){ XWiki.displayDocExtra("Comments", "commentsinline.vm", false) };
+                if (hashviewer == "Comments") {
+          var extraInit = function(){ XWiki.displayDocExtra("Comments", "commentsinline.vm", true) };
+        }
+                                if ($("Commentslink") != null) {
+          $("Commentslink").href="#Comments";
+          Event.observe($("Commentslink"), "click", function(){ XWiki.displayDocExtra("Comments", "commentsinline.vm", false); }, false);
+        }
+                                if ($("tmShowComments") != null) {
+          $("tmShowComments").href="#Comments";
+          Event.observe($("tmShowComments"), "click", function(){ XWiki.displayDocExtra("Comments", "commentsinline.vm", true); }, false);
+        }
+                                if ($("commentsshortcut") != null) {
+          $("commentsshortcut").down('a').href="#comments";
+          Event.observe($("commentsshortcut"), "click", function(){ XWiki.displayDocExtra("Comments", "commentsinline.vm", true); }, false);
+        }
+                                                                              if (hashviewer == "Attachments") {
+          var extraInit = function(){ XWiki.displayDocExtra("Attachments", "attachmentsinline.vm", true) };
+        }
+                                if ($("Attachmentslink") != null) {
+          $("Attachmentslink").href="#Attachments";
+          Event.observe($("Attachmentslink"), "click", function(){ XWiki.displayDocExtra("Attachments", "attachmentsinline.vm", false); }, false);
+        }
+                                if ($("tmShowAttachments") != null) {
+          $("tmShowAttachments").href="#Attachments";
+          Event.observe($("tmShowAttachments"), "click", function(){ XWiki.displayDocExtra("Attachments", "attachmentsinline.vm", true); }, false);
+        }
+                                if ($("attachmentsshortcut") != null) {
+          $("attachmentsshortcut").down('a').href="#attachments";
+          Event.observe($("attachmentsshortcut"), "click", function(){ XWiki.displayDocExtra("Attachments", "attachmentsinline.vm", true); }, false);
+        }
+                                                                              if (hashviewer == "History") {
+          var extraInit = function(){ XWiki.displayDocExtra("History", "historyinline.vm", true) };
+        }
+                                if ($("Historylink") != null) {
+          $("Historylink").href="#History";
+          Event.observe($("Historylink"), "click", function(){ XWiki.displayDocExtra("History", "historyinline.vm", false); }, false);
+        }
+                                if ($("tmShowHistory") != null) {
+          $("tmShowHistory").href="#History";
+          Event.observe($("tmShowHistory"), "click", function(){ XWiki.displayDocExtra("History", "historyinline.vm", true); }, false);
+        }
+                                if ($("historyshortcut") != null) {
+          $("historyshortcut").down('a').href="#history";
+          Event.observe($("historyshortcut"), "click", function(){ XWiki.displayDocExtra("History", "historyinline.vm", true); }, false);
+        }
+                                                                              if (hashviewer == "Information") {
+          var extraInit = function(){ XWiki.displayDocExtra("Information", "informationinline.vm", true) };
+        }
+                                if ($("Informationlink") != null) {
+          $("Informationlink").href="#Information";
+          Event.observe($("Informationlink"), "click", function(){ XWiki.displayDocExtra("Information", "informationinline.vm", false); }, false);
+        }
+                                if ($("tmShowInformation") != null) {
+          $("tmShowInformation").href="#Information";
+          Event.observe($("tmShowInformation"), "click", function(){ XWiki.displayDocExtra("Information", "informationinline.vm", true); }, false);
+        }
+                                if ($("informationshortcut") != null) {
+          $("informationshortcut").down('a').href="#information";
+          Event.observe($("informationshortcut"), "click", function(){ XWiki.displayDocExtra("Information", "informationinline.vm", true); }, false);
+        }
+                                            document.observe("dom:loaded", extraInit, false);
+    </script>
+</div> </div>
+</div> </div><div id="leftPanels" class="panels left panel-width-Medium">
+<div class="panel expanded PanelEvent"><h1 class="xwikipaneltitle">Evènements partenaires</h1><div class="xwikipanelcontents"><center>
+<span class="wikiexternallink"><a href="https://jlove.konfy.care/"><img src="./parisjug-20201208_files/jlove-20201204.svg" alt="Jlove" width="160"></a></span>
+<p>
+</p></center></div></div>
+<div class="panel expanded QuickLinks"><h1 class="xwikipaneltitle">Soirée Virtuelle: Le Java nouveau est arrivé : Java SE 15 (2020/12/08) (Meeting.20201208) - XWiki</h1><div class="xwikipanelcontents"><ul><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/">Accueil</a></span></li></ul><hr><p>&nbsp;</p><ul><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Meeting/Next">Prochaines rencontres</a></span></li><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Meeting/Previous">Rencontres precedentes</a></span></li></ul><hr><ul><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/About">Qu'est-ce que le ParisJUG</a></span></li><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/MakeAPresentation">Faire une presentation</a></span></li><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Speaker/">Les speakers</a></span></li><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/About">Mailing list</a></span></li></ul><hr><ul><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors">Sponsors</a></span></li><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Partenaires">Partenaires</a></span></li><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Donation">Donation</a></span></li><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/MarketingMaterial">Elements Marketing</a></span></li></ul><hr><ul><li><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/ContactUs">Nous contacter</a></span></li></ul><span class="jmp-activator">Jump to any page in the wiki (Meta+G)</span></div></div>
+</div>
+</div><div id="rightPanels" class="panels right panel-width-Medium">
+<div class="panel expanded PanelSponsors"><h1 class="xwikipaneltitle">Sponsors Platinium</h1><div class="xwikipanelcontents"><table>
+<tbody><tr style="">
+<td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#renault%2Ddigital"><img alt="renault-digital" src="./parisjug-20201208_files/renault-digital(1).svg" width="180px"></a></span>
+</td></tr>
+<tr style="">
+<td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#mirakl"><img alt="mirakl" src="./parisjug-20201208_files/mirakl(1).svg" width="180px"></a></span>
+</td></tr>
+<tr style="">
+<td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#arolla"><img alt="Arolla" src="./parisjug-20201208_files/arolla(1).svg" width="180px"></a></span></td></tr>
+<tr style="">
+<td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#redhat"><img alt="Redhat" src="./parisjug-20201208_files/Logo-RedHat-B-Color-RGB(1).svg" width="180px"></a></span>
+</td></tr>
+<tr style="">
+<td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#oxiane"><img alt="Oxiane" src="./parisjug-20201208_files/oxiane(1).svg" width="180px"></a></span></td></tr>
+<tr><td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#softeamgroup"><img alt="Softeam" src="./parisjug-20201208_files/softeamgroup(1).svg" width="180px"></a></span></td></tr>
+<tr><td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#novencia"><img alt="Novencia" src="./parisjug-20201208_files/novencia(1).svg" width="180px"></a></span></td></tr>
+<tr><td style="padding:0px;border:none;text-align:center">
+<span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#codeworks"><img alt="Codeworks" src="./parisjug-20201208_files/codeworks(1).svg" width="180px"></a></span></td></tr><tr style="">
+</tr></tbody></table></div></div>
+<div class="panel expanded PanelSponsorsGold"><h1 class="xwikipaneltitle">Sponsors Gold</h1><div class="xwikipanelcontents"><p>
+</p><table>
+<tbody><tr>
+<td style="padding:0px;border:none;text-align:center;"><span class="wikilink"><a href="/xwiki/wiki/oldversion/view/Main/Sponsors#maplr"><img alt="Maplr" height="50" src="./parisjug-20201208_files/maplr(1).svg"></a></span></td>
+</tr>
+</tbody></table>
+<p></p></div></div>
+<div class="panel expanded PanelPartners"><h1 class="xwikipaneltitle">Sponsors Platinium</h1><div class="xwikipanelcontents"><table>
+<tbody><tr style="">
+<td style="padding:0px;border:none;text-align:center"><span class="wikiexternallink"><a href="http://www.jetbrains.com/"><img alt="JetBrains" src="./parisjug-20201208_files/logo_jetbrains.svg" width="120px"></a></span></td></tr>
+<tr style="">
+<td style="padding:0px;border:none;text-align:center"><span class="wikiexternallink"><a href="https://www.pluralsight.com/"><img alt="PluralSight" src="./parisjug-20201208_files/pluralsight_logo.png" width="120px"></a></span></td></tr>
+</tbody></table></div></div>
+</div>
+<div class="clearfloats"></div>
+</div></div><div id="footerglobal">
+<div id="xwikilicence">This wiki is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">Creative Commons 2.0</a> license</div>
+<div id="xwikiplatformversion">XWiki Enterprise 6.2.4 - <a onclick="openURL(&#39;http://enterprise.xwiki.org/xwiki/bin/view/Main/Documentation&#39;, &#39;_blank&#39;); return false;" href="https://www.xwiki.org/xwiki/bin/view/Main/Documentation">Documentation</a></div>
+</div>
+</div></div>
+</body></html>
