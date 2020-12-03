@@ -14,7 +14,7 @@ to have it working, the CLI needs the sendinblue api-key:
 ```
 export SENDINBLUE_APIKEY=<your-apikey>
 ```
-or set to the src/main/resources/application.properties:
+or set to the `src/main/resources/application.properties`:
 ```
 sendinblue.apikey=<your-apikey>
 ```
