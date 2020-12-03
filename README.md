@@ -2,7 +2,7 @@
 
 a CLI used by the ParisJUG crew to publish events
 
-Open the project in Eclipse Che developer environmnet (hosted by Red Hat): [![Contribute](https://www.eclipse.org/che/factory-contribute.svg)](https://che.openshift.io/f?url=https://github.com/parisjug/event-publisher)
+Open the project in Eclipse Che developer environment (hosted by Red Hat): [![Contribute](https://www.eclipse.org/che/factory-contribute.svg)](https://che.openshift.io/f?url=https://github.com/parisjug/event-publisher)
 
 Currently supported:
 ```bash
