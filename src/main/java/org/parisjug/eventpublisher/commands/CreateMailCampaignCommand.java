@@ -2,6 +2,7 @@ package org.parisjug.eventpublisher.commands;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -26,7 +27,7 @@ public class CreateMailCampaignCommand implements Runnable {
     private String url;
 
     @ConfigProperty(name = "sendinblue.apikey")
-    String senditblueApiKey;
+    Optional<String> senditblueApiKey;
 
     @Override
     public void run() {
@@ -52,11 +53,12 @@ public class CreateMailCampaignCommand implements Runnable {
             MediaType mediaType = MediaType.parse("application/json");
 
             Gson gson = new Gson();
-            System.out.println("Sending request: \n" +gson.toJson(campaign));
+            System.out.println("Sending request: \n" + gson.toJson(campaign));
             RequestBody body = RequestBody.create(mediaType, //
                     gson.toJson(campaign));
             Request request2 = new Request.Builder().url("https://api.sendinblue.com/v3/emailCampaigns").post(body)
-                    .addHeader("api-key", senditblueApiKey) //
+                    .addHeader("api-key", senditblueApiKey.orElseThrow(() -> new RuntimeException(
+                            "Should set the sendinblue apikey. for instance with the env variable SENDINBLUE_APIKEY"))) //
                     .addHeader("Accept", "application/json") //
                     .addHeader("Content-Type", "application/json") //
                     .build();
