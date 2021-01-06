@@ -43,6 +43,7 @@ public class CreateMailCampaignCommand implements Runnable {
             campaign.setTemplateId(51L);
             HashMap<String, String> params = new HashMap<String, String>();
             params.put("TITLE", page.getTitle());
+            params.put("INTRO", page.getIntro());
             params.put("LOCATION_URL", page.getLocation());
             params.put("CALENDAR_URL", page.generateGcalLink());
             params.put("DATETIME", page.getDateTime());

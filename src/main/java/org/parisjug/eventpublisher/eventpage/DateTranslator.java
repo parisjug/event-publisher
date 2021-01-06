@@ -15,15 +15,15 @@ public class DateTranslator {
     public DateTranslator() {
 
 
-        map.put("janvier", "1");
-        map.put("février", "2");
-        map.put("mars", "3");
-        map.put("avril", "4");
-        map.put("mai", "5");
-        map.put("juin", "6");
-        map.put("juillet", "7");
-        map.put("août", "8");
-        map.put("septembre", "9");
+        map.put("janvier", "01");
+        map.put("février", "02");
+        map.put("mars", "03");
+        map.put("avril", "04");
+        map.put("mai", "05");
+        map.put("juin", "06");
+        map.put("juillet", "07");
+        map.put("août", "08");
+        map.put("septembre", "09");
         map.put("octobre", "10");
         map.put("novembre", "11");
         map.put("décembre", "12");

@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 public class HtmlEventPage implements EventPage {
     Document doc;
@@ -94,5 +95,16 @@ public class HtmlEventPage implements EventPage {
     String encode(String str) {
         return URLEncoder.encode(str, StandardCharsets.UTF_8);
     }
+
+	@Override
+	public String getIntro() {
+        Elements intro = doc.select("#intro");
+		if(intro.isEmpty()){
+            return "";
+        }
+        return intro.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
+	}
+
+    
 
 }

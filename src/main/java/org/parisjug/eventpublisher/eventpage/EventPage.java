@@ -32,4 +32,6 @@ public interface EventPage {
 
     String generateGcalLink();
 
+	String getIntro();
+
 }
