@@ -17,7 +17,11 @@ public class HtmlEventPage implements EventPage {
 
     @Override
     public String getTitle() {
-        return doc.select("#title").first().text();
+        Elements titleElements = doc.select("#title");
+        if(titleElements.isEmpty()){
+            throw new EventPageCheckException("The page should contain an element with the id \"title\". For instance: <div id=\"title\">Quarkus World Tour</div>.");
+        }
+        return titleElements.first().text();
     }
 
     protected void loadFromLocalHtmlFile(File htmlFile) {
