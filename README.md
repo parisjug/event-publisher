@@ -12,6 +12,17 @@ parisjug-event-publisher gcal https://www.parisjug.org/xwiki/wiki/oldversion/vie
 parisjug-event-publisher campaign https://www.parisjug.org/xwiki/wiki/oldversion/view/Meeting/20201208 # create a sendinblue campaign, fetching data from the wiki page in parameter
 ```
 
+For sendinblue campaign, it is possible to use other templates.
+For instance to use the datadog template: 
+1. get the template id from:
+   
+   ![sendinblue-templates-screenshot.png](sendinblue-templates-screenshot.png)
+2. datadog has the template number 116. Use this command:
+   ```
+   ./parisjug-event-publisher-linux campaign --template=116 https://www.parisjug.org/xwiki/wiki/oldversion/view/Meeting/20211214
+   ```
+If no template is provided, the 51 one will be used which refers to the virtual event template.
+
 To have it working, the CLI needs the sendinblue api-key. You can generate new api-key from https://account.sendinblue.com/advanced/api.
 Then, use it either with env variable:
 ```
