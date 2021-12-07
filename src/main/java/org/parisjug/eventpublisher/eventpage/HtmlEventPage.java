@@ -46,6 +46,16 @@ public class HtmlEventPage implements EventPage {
     }
 
     @Override
+    public String getPart1() {
+        return doc.select("#part1").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
+    }
+
+    @Override
+    public String getPart2() {
+        return doc.select("#part2").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
+    }
+
+    @Override
     public String getDateTime() {
         return doc.select("#datetime").first().text();
     }

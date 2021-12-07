@@ -20,6 +20,10 @@ public interface EventPage {
 
     String getDetails();
 
+    String getPart1();
+
+    String getPart2();
+
     String getStartTime();
 
     String getDateTime();

@@ -66,6 +66,8 @@ public class CreateMailCampaignCommand implements Runnable {
             params.put("DATETIME", page.getDateTime());
             params.put("WEBSITE_URL", "https://www.parisjug.org/xwiki/bin/view/Main/WebHome");
             params.put("CONTENT", page.getDetails());
+            params.put("PART1", page.getPart1());
+            params.put("PART2", page.getPart2());
             campaign.setParams(params);
 
             MediaType mediaType = MediaType.parse("application/json");
