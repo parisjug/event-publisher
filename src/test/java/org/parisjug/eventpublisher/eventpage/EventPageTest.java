@@ -35,6 +35,9 @@ public class EventPageTest {
                         .contains("https://www.parisjug.org/xwiki/wiki/oldversion/view/Speaker/DoudouxJeanMichel"),
                 "should contain link https://www.parisjug.org/xwiki/wiki/oldversion/view/Speaker/DoudouxJeanMichel");
 
+        // is virtual ?
+        assertTrue(page.isVirtual(), "should be virtual");
+
         // date time
         assertEquals("Mardi 8 décembre 2020 à 19h00", page.getDateTime(), "Date and time");
 
@@ -45,7 +48,7 @@ public class EventPageTest {
         assertEquals("20201208T191500Z", page.getEndTime(), "end time");
 
         // long title
-        assertEquals("Paris JUG - Soirée Virtuelle: Le Java nouveau est arrivé : Java SE 15 (2020/12/08)",
+        assertEquals("Paris JUG - Soirée Virtuelle : Le Java nouveau est arrivé : Java SE 15 (2020/12/08)",
                 page.getLongTitle(), "Long title");
 
         // location
@@ -63,6 +66,48 @@ public class EventPageTest {
         assertEquals(
                 "The page should contain an element with the id \"title\". For instance: <div id=\"title\">Quarkus World Tour</div>.",
                 ex.getMessage());
+
+    }
+
+
+    @Test
+    public void test_inRealLifeEvent() {
+        File file = new File(this.getClass().getResource("parisjug-iRL-20211214.html").getFile());
+
+        EventPage page = EventPage.fromHtmlLocalFile(file);
+        // EventPage page =
+        // EventPage.fromUrl("https://www.parisjug.org/xwiki/wiki/oldversion/view/Meeting/20201208");
+        assertNotNull(page, "should be able to load from a xwiki html file");
+
+        // title
+        assertEquals("Développe dans ton cloud pour le cloud - Gitpod et Eclipse Che", page.getTitle(), "Title from page");
+
+        // details
+        assertTrue(page.getDetails().contains("<strong>19h15 à 19h30 : Accueil</strong>"));
+        assertFalse(page.getDetails().contains("Code de Conduite"));
+        assertTrue(
+                page.getDetails()
+                        .contains("https://www.parisjug.org/xwiki/wiki/oldversion/view/Speaker/HoracioGonzalez"),
+                "should contain link https://www.parisjug.org/xwiki/wiki/oldversion/view/Speaker/HoracioGonzalez");
+
+        // date time
+        assertEquals("Mardi 14 décembre 2021 à 19h15", page.getDateTime(), "Date and time");
+
+        // is virtual ?
+        assertFalse(page.isVirtual(), "should be in Real life");
+
+        // start time
+        assertEquals("20211214T181500Z", page.getStartTime(), "start time");
+
+        // end time
+        assertEquals("20211214T210000Z", page.getEndTime(), "end time");
+
+        // long title
+        assertEquals("Paris JUG - Soirée en présentiel : Développe dans ton cloud pour le cloud - Gitpod et Eclipse Che (2021/12/14)",
+                page.getLongTitle(), "Long title");
+
+        // location
+        assertEquals("https://www.parisjug.org/xwiki/wiki/oldversion/view/Location/Datadog", page.getLocation(), "location");
 
     }
 }

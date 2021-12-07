@@ -53,8 +53,10 @@ public class HtmlEventPage implements EventPage {
     @Override
     public String getStartTime() {
         ZonedDateTime eventDateTime = getEventZonedDateTime();
-        ZonedDateTime startDateTime = eventDateTime.minusMinutes(15);
-        return startDateTime.format(DateTimeFormatter.ISO_INSTANT).replace(":", "").replace("-", "");
+        if (isVirtual()) {
+            eventDateTime = eventDateTime.minusMinutes(15);
+        }
+        return eventDateTime.format(DateTimeFormatter.ISO_INSTANT).replace(":", "").replace("-", "");
     }
 
     private ZonedDateTime getEventZonedDateTime() {
@@ -64,8 +66,12 @@ public class HtmlEventPage implements EventPage {
     @Override
     public String getEndTime() {
         ZonedDateTime eventDateTime = getEventZonedDateTime();
-        ZonedDateTime endDateTime = eventDateTime.plusMinutes(75);
-        return endDateTime.format(DateTimeFormatter.ISO_INSTANT).replace(":", "").replace("-", "");
+        if(isVirtual()){
+            eventDateTime = eventDateTime.plusMinutes(75);
+        }else {
+            eventDateTime = eventDateTime.plusMinutes(165);
+        }
+        return eventDateTime.format(DateTimeFormatter.ISO_INSTANT).replace(":", "").replace("-", "");
     }
 
     ZonedDateTime parseDateTime(String datetimeInput) {
@@ -78,22 +84,31 @@ public class HtmlEventPage implements EventPage {
     @Override
     public String getLongTitle() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy'/'MM'/'dd");
-        return "Paris JUG - Soirée Virtuelle: " + getTitle() + " (" + getEventZonedDateTime().format(dtf) + ")";
+        String virtualOrInRealLife = "en présentiel";
+        if (isVirtual()) {
+            virtualOrInRealLife = "Virtuelle";
+        }
+        return "Paris JUG - Soirée " + virtualOrInRealLife + " : " + getTitle() + " ("
+                + getEventZonedDateTime().format(dtf) + ")";
     }
 
     @Override
     public String getLocation() {
-        return doc.select("#location a").first().attr("href");
+        String attr = doc.select("#location a").first().attr("href");
+        if(attr.startsWith("/")) {
+            attr = "https://www.parisjug.org" + attr;
+        }
+        return attr;
     }
 
     @Override
     public String generateGcalLink() {
-        String title_url = encode(getLongTitle());
-        String details_url = encode(getDetails());
-        String dates_url = encode(getStartTime() + "/" + getEndTime());
-        String location_url = encode(getLocation());
-        return "https://www.google.com/calendar/render?action=TEMPLATE&text=" + title_url + "&details=" + details_url
-                + "&location=" + location_url + "&dates=" + dates_url;
+        String title_urlencoded = encode(getLongTitle());
+        String details_urlencoded = encode(getDetails());
+        String dates_urlencoded = encode(getStartTime() + "/" + getEndTime());
+        String location_urlencoded = encode(getLocation());
+        return "https://www.google.com/calendar/render?action=TEMPLATE&text=" + title_urlencoded + "&details=" + details_urlencoded
+                + "&location=" + location_urlencoded + "&dates=" + dates_urlencoded;
     }
 
     String encode(String str) {
@@ -109,6 +124,13 @@ public class HtmlEventPage implements EventPage {
         return intro.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
 	}
 
-    
+    @Override
+    public boolean isVirtual() {
+        if(doc.select("#location").first().text().contains("Dans les locaux de notre chaîne")){
+            return true;
+        };
+
+        return false;
+    }
 
 }

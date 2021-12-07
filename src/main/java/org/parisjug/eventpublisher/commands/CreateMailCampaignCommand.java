@@ -53,8 +53,11 @@ public class CreateMailCampaignCommand implements Runnable {
             CreateEmailCampaign campaign = new CreateEmailCampaign( //
                     "Soirée ParisJUG: " + page.getTitle(), //
                     new Sender("La crew du ParisJUG", "crew@parisjug.org"), //
-                    "Soirée Virtuelle ParisJUG - {{ params.TITLE }} - {{ params.DATETIME }}");
-            campaign.setTemplateId(51L);
+                    "Soirée " + //
+                            (page.isVirtual() ? "Virtuelle" : "en présentiel") + //
+                            " ParisJUG - {{ params.TITLE }} - {{ params.DATETIME }}");
+            campaign.setTemplateId(templateIdValue);
+
             HashMap<String, String> params = new HashMap<String, String>();
             params.put("TITLE", page.getTitle());
             params.put("INTRO", page.getIntro());
