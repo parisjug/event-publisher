@@ -18,6 +18,7 @@ import org.parisjug.eventpublisher.json.CreateEmailCampaign;
 import org.parisjug.eventpublisher.json.Sender;
 
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 @Command(name = "campaign")
@@ -26,11 +27,24 @@ public class CreateMailCampaignCommand implements Runnable {
     @Parameters(index = "0", description = "Url of the event page where to get the event details. Like https://www.parisjug.org/xwiki/wiki/oldversion/view/Meeting/20201208")
     private String url;
 
+    @Option(names = { "-t",
+            "--template" }, description = "Set the template id to be used (default is 51)")
+    private String templateIdOption;
+
     @ConfigProperty(name = "sendinblue.apikey")
     Optional<String> senditblueApiKey;
 
     @Override
     public void run() {
+        long templateIdValue = 51L;
+        if (templateIdOption != null) {
+            try {
+                templateIdValue = Long.parseLong(templateIdOption);
+            } catch (NumberFormatException e) {
+                System.out.println("Template id " + templateIdOption + " is not a number, using default.");
+            }
+        }
+        System.out.println("Using template id " + templateIdValue);
 
         try {
             EventPage page = EventPage.fromUrl(url);
