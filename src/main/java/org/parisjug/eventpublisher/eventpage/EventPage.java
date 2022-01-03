@@ -36,7 +36,7 @@ public interface EventPage {
 
     String generateGcalLink();
 
-	String getIntro();
+    String getIntro();
 
     boolean isVirtual();
 

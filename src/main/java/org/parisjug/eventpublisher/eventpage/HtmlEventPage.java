@@ -18,8 +18,9 @@ public class HtmlEventPage implements EventPage {
     @Override
     public String getTitle() {
         Elements titleElements = doc.select("#title");
-        if(titleElements.isEmpty()){
-            throw new EventPageCheckException("The page should contain an element with the id \"title\". For instance: <div id=\"title\">Quarkus World Tour</div>.");
+        if (titleElements.isEmpty()) {
+            throw new EventPageCheckException(
+                    "The page should contain an element with the id \"title\". For instance: <div id=\"title\">Quarkus World Tour</div>.");
         }
         return titleElements.first().text();
     }
@@ -42,17 +43,17 @@ public class HtmlEventPage implements EventPage {
 
     @Override
     public String getDetails() {
-        return doc.select("#details").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
+        return doc.select("#details").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
     }
 
     @Override
     public String getPart1() {
-        return doc.select("#part1").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
+        return doc.select("#part1").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
     }
 
     @Override
     public String getPart2() {
-        return doc.select("#part2").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
+        return doc.select("#part2").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
     }
 
     @Override
@@ -76,9 +77,9 @@ public class HtmlEventPage implements EventPage {
     @Override
     public String getEndTime() {
         ZonedDateTime eventDateTime = getEventZonedDateTime();
-        if(isVirtual()){
+        if (isVirtual()) {
             eventDateTime = eventDateTime.plusMinutes(75);
-        }else {
+        } else {
             eventDateTime = eventDateTime.plusMinutes(165);
         }
         return eventDateTime.format(DateTimeFormatter.ISO_INSTANT).replace(":", "").replace("-", "");
@@ -105,7 +106,7 @@ public class HtmlEventPage implements EventPage {
     @Override
     public String getLocation() {
         String attr = doc.select("#location a").first().attr("href");
-        if(attr.startsWith("/")) {
+        if (attr.startsWith("/")) {
             attr = "https://www.parisjug.org" + attr;
         }
         return attr;
@@ -117,28 +118,29 @@ public class HtmlEventPage implements EventPage {
         String details_urlencoded = encode(getDetails());
         String dates_urlencoded = encode(getStartTime() + "/" + getEndTime());
         String location_urlencoded = encode(getLocation());
-        return "https://www.google.com/calendar/render?action=TEMPLATE&text=" + title_urlencoded + "&details=" + details_urlencoded
-                + "&location=" + location_urlencoded + "&dates=" + dates_urlencoded;
+        return "https://www.google.com/calendar/render?action=TEMPLATE&text=" + title_urlencoded + "&details="
+                + details_urlencoded + "&location=" + location_urlencoded + "&dates=" + dates_urlencoded;
     }
 
     String encode(String str) {
         return URLEncoder.encode(str, StandardCharsets.UTF_8);
     }
 
-	@Override
-	public String getIntro() {
+    @Override
+    public String getIntro() {
         Elements intro = doc.select("#intro");
-		if(intro.isEmpty()){
+        if (intro.isEmpty()) {
             return "";
         }
-        return intro.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/" );
-	}
+        return intro.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+    }
 
     @Override
     public boolean isVirtual() {
-        if(doc.select("#location").first().text().contains("Dans les locaux de notre chaîne")){
+        if (doc.select("#location").first().text().contains("Dans les locaux de notre chaîne")) {
             return true;
-        };
+        }
+        ;
 
         return false;
     }

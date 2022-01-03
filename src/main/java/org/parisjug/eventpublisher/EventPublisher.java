@@ -19,6 +19,7 @@ public class EventPublisher implements Runnable {
 
     @Override
     public void run() {
-        throw new CommandLine.ParameterException(spec.commandLine(), "No command argument specified. Please provide a command argument.");
+        throw new CommandLine.ParameterException(spec.commandLine(),
+                "No command argument specified. Please provide a command argument.");
     }
 }

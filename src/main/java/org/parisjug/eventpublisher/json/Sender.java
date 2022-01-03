@@ -12,7 +12,4 @@ public class Sender {
         this.email = email;
     }
 
-    
-
 }
-

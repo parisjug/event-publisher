@@ -9,4 +9,3 @@ public class EmailCampaign {
     public String type;
     public String htmlContent;
 }
-

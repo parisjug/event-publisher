@@ -27,8 +27,7 @@ public class CreateMailCampaignCommand implements Runnable {
     @Parameters(index = "0", description = "Url of the event page where to get the event details. Like https://www.parisjug.org/xwiki/wiki/oldversion/view/Meeting/20201208")
     private String url;
 
-    @Option(names = { "-t",
-            "--template" }, description = "Set the template id to be used (default is 51)")
+    @Option(names = { "-t", "--template" }, description = "Set the template id to be used (default is 51)")
     private String templateIdOption;
 
     @ConfigProperty(name = "sendinblue.apikey")

@@ -14,7 +14,6 @@ public class DateTranslator {
 
     public DateTranslator() {
 
-
         map.put("janvier", "01");
         map.put("février", "02");
         map.put("mars", "03");
