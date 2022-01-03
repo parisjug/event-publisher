@@ -8,6 +8,11 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import com.squareup.okhttp.HttpUrl;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -141,6 +146,46 @@ public class HtmlEventPage implements EventPage {
         };
 
         return false;
+    }
+
+    @Override
+    public String generateAddEventCalLink(String addEventToken) {
+
+        try {
+
+            // create calendarevent
+            // CalendarEvent calendarEvent = new CalendarEvent(getLongTitle(), getDetails(),
+            // getStartTime(), getEndTime(), getLocation());
+
+            // MediaType mediaType = MediaType.parse("application/json");
+
+            // Gson gson = new Gson();
+            // String json = gson.toJson(calendarEvent);
+            // System.out.println("Sending request: \n" + json);
+            // RequestBody body = RequestBody.create(mediaType, //
+            // json);
+
+            HttpUrl url = HttpUrl //
+                    .parse("https://www.addevent.com/api/v1/oe/events/create/") //
+                    .newBuilder() //
+                    .addQueryParameter("title", getLongTitle()) //
+                    .addQueryParameter("description", getDetails()) //
+                    .addQueryParameter("location", getLongTitle()) //
+                    .addQueryParameter("organizer", "Paris JUG") //
+                    .addQueryParameter("organizer_email", "crew@parisjug.org") //
+                    .addQueryParameter("start_date", getStartTime()) //
+                    .addQueryParameter("end_date", getEndTime()) //
+                    .addQueryParameter("token", addEventToken)
+                    .build();
+
+            Request request = new Request.Builder().url(url).build();
+
+            OkHttpClient client = new OkHttpClient();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (IOException e) {
+            throw new RuntimeException("an error occured when create an addevent url", e);
+        }
     }
 
 }

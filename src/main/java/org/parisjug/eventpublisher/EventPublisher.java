@@ -1,6 +1,7 @@
 package org.parisjug.eventpublisher;
 
 import org.parisjug.eventpublisher.commands.CreateMailCampaignCommand;
+import org.parisjug.eventpublisher.commands.GenerateAddEventCalendarCommand;
 import org.parisjug.eventpublisher.commands.GenerateGoogleCalendarCommand;
 
 import io.quarkus.picocli.runtime.annotations.TopCommand;
@@ -11,7 +12,8 @@ import picocli.CommandLine.Model.CommandSpec;
 @TopCommand
 @CommandLine.Command(subcommands = { //
         GenerateGoogleCalendarCommand.class, //
-        CreateMailCampaignCommand.class //
+        CreateMailCampaignCommand.class,
+        GenerateAddEventCalendarCommand.class //
 })
 public class EventPublisher implements Runnable {
     @Spec
