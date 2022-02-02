@@ -53,7 +53,11 @@ public class HtmlEventPage implements EventPage {
 
     @Override
     public String getPart2() {
-        return doc.select("#part2").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+        Elements part2 = doc.select("#part2");
+        if (part2.isEmpty()) {
+            return "";
+        }
+        return part2.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
     }
 
     @Override
