@@ -35,7 +35,13 @@ public class CreateMailCampaignCommand implements Runnable {
 
     @Override
     public void run() {
+        if (senditblueApiKey.isEmpty()) {
+            System.err
+                    .println("Should set the sendinblue apikey.\nYou can generate new api-key from https://account.sendinblue.com/advanced/api.\nThen pass it as environment variable like `export SENDINBLUE_APIKEY=<your-apikey>` and rerun the command");
+                    return;
+        }
         long templateIdValue = 51L;
+
         if (templateIdOption != null) {
             try {
                 templateIdValue = Long.parseLong(templateIdOption);
@@ -76,8 +82,7 @@ public class CreateMailCampaignCommand implements Runnable {
             RequestBody body = RequestBody.create(mediaType, //
                     gson.toJson(campaign));
             Request request2 = new Request.Builder().url("https://api.sendinblue.com/v3/emailCampaigns").post(body)
-                    .addHeader("api-key", senditblueApiKey.orElseThrow(() -> new RuntimeException(
-                            "Should set the sendinblue apikey. for instance with the env variable SENDINBLUE_APIKEY"))) //
+                    .addHeader("api-key", senditblueApiKey.get()) //
                     .addHeader("Accept", "application/json") //
                     .addHeader("Content-Type", "application/json") //
                     .build();
