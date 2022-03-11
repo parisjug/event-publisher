@@ -27,7 +27,7 @@ public class CreateMailCampaignCommand implements Runnable {
     @Parameters(index = "0", description = "Url of the event page where to get the event details. Like https://www.parisjug.org/xwiki/wiki/oldversion/view/Meeting/20201208")
     private String url;
 
-    @Option(names = { "-t", "--template" }, description = "Set the template id to be used (default is 51)")
+    @Option(names = { "-t", "--template" }, description = "Set the template id to be used. \nDefault is 51 for online events.\nUse `rd` or `datadog` to use the predefined onsite event at Renault Digital or Datadog.\nOtherwise, create an new template in SendItBlue and use the id.")
     private String templateIdOption;
 
     @ConfigProperty(name = "sendinblue.apikey")
@@ -43,6 +43,14 @@ public class CreateMailCampaignCommand implements Runnable {
         long templateIdValue = 51L;
 
         if (templateIdOption != null) {
+            if(templateIdOption.equalsIgnoreCase("rd")){
+                templateIdValue = 114L;
+            }
+
+            if(templateIdOption.equalsIgnoreCase("datadog")){
+                templateIdValue = 116L;
+            }
+
             try {
                 templateIdValue = Long.parseLong(templateIdOption);
             } catch (NumberFormatException e) {
