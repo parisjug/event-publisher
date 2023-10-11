@@ -17,7 +17,7 @@ public class HtmlEventPage implements EventPage {
 
     @Override
     public String getTitle() {
-        Elements titleElements = doc.select("#title");
+        Elements titleElements = doc.select(".post__title");
         if (titleElements.isEmpty()) {
             throw new EventPageCheckException(
                     "The page should contain an element with the id \"title\". For instance: <div id=\"title\">Quarkus World Tour</div>.");
@@ -43,7 +43,11 @@ public class HtmlEventPage implements EventPage {
 
     @Override
     public String getDetails() {
-        return doc.select("#details").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+        return getPart1() + getBuffet() + getPart2();
+    }
+
+    public String getBuffet() {
+        return doc.select("#buffet").first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
     }
 
     @Override
@@ -99,11 +103,7 @@ public class HtmlEventPage implements EventPage {
     @Override
     public String getLongTitle() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy'/'MM'/'dd");
-        String virtualOrInRealLife = "en présentiel";
-        if (isVirtual()) {
-            virtualOrInRealLife = "Virtuelle";
-        }
-        return "Paris JUG - Soirée " + virtualOrInRealLife + " : " + getTitle() + " ("
+        return "Paris JUG - " + getTitle() + " ("
                 + getEventZonedDateTime().format(dtf) + ")";
     }
 

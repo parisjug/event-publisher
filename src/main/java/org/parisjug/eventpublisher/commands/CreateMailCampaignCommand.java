@@ -77,7 +77,7 @@ public class CreateMailCampaignCommand implements Runnable {
             params.put("LOCATION_URL", page.getLocation());
             params.put("CALENDAR_URL", page.generateGcalLink());
             params.put("DATETIME", page.getDateTime());
-            params.put("WEBSITE_URL", "https://www.parisjug.org/xwiki/bin/view/Main/WebHome");
+            params.put("WEBSITE_URL", "https://www.parisjug.org/");
             params.put("CONTENT", page.getDetails());
             params.put("PART1", page.getPart1());
             params.put("PART2", page.getPart2());
