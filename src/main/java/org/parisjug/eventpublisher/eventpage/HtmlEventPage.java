@@ -132,7 +132,7 @@ public class HtmlEventPage implements EventPage {
                 }
                 if(elements.get(i).tagName().equals("h3") && elements.get(i).id().contains("3ème-mi-temps")) {
                     start = false;
-                    continue;
+                    break;
                 }
                 if(start) {
                     part2html += elements.get(i).outerHtml();
