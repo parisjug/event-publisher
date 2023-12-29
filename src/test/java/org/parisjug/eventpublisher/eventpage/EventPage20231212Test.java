@@ -24,7 +24,7 @@ class EventPage20231212Test {
                 // title
                 assertEquals("Soirée Panama (GL)", page.getTitle(), "Title from page");
 
-                // assert page.getPart1 should contains "19h30 : Panama - Foreign Function &
+                // assert page.getPart1 should contain "19h30 : Panama - Foreign Function &
                 // Memory"
                 assertTrue(page.getPart1().contains("19h30 : Panama - Foreign Function"),
                                 "part1 should contains 19h30 : Panama - Foreign Function");
