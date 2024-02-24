@@ -53,3 +53,17 @@ data:
 ```
 kubectl apply -f sendinblue.yaml -n <namespace-were-your-workspace-is-running>
 ```
+
+## using from source 
+
+```bash
+git clone https://github.com/parisjug/event-publisher.git
+# export SENDINBLUE_APIKEY=xkeysib-1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef-1234567890ABCDEF
+# or source .envrc
+# or use  direnv with .envrc containing export SENDINBLUE_APIKEY=xkeysib-1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef-1234567890ABCDEF
+mvn clean test quarkus:build &&\
+  cd target/quarkus-app/ &&\
+  java -jar quarkus-run.jar campaign \
+   --template=222 \
+    https://www.parisjug.org/events/2024/03-12-ci-cd/
+```
