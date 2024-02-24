@@ -6,12 +6,9 @@ import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
+
+import okhttp3.*;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.parisjug.eventpublisher.eventpage.EventPage;
 import org.parisjug.eventpublisher.json.CreateEmailCampaign;
