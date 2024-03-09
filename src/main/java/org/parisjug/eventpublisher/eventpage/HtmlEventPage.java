@@ -1,5 +1,8 @@
 package org.parisjug.eventpublisher.eventpage;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.time.format.DateTimeFormatter.ISO_INSTANT;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -10,19 +13,22 @@ import java.util.Locale;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class HtmlEventPage implements EventPage {
+    private static final String ABSOLUTE_URL = "https://www.parisjug.org";
+
     Document doc;
 
     @Override
     public String getTitle() {
-        Elements titleElements = doc.select(".post__title");
-        if (titleElements.isEmpty()) {
+        Element titleElement = this.doc.selectFirst(".post__title");
+        if (titleElement == null) {
             throw new EventPageCheckException(
                     "The page should contain an element with the id \"title\". For instance: <div id=\"title\">Quarkus World Tour</div>.");
         }
-        return titleElements.first().text();
+        return titleElement.text();
     }
 
     protected void loadFromLocalHtmlFile(File htmlFile) {
@@ -43,70 +49,58 @@ public class HtmlEventPage implements EventPage {
 
     @Override
     public String getDetails() {
-        return getPart1() + getBuffet() + getPart2();
+        return convertToAbsoluteLinks(getPart1() + getBuffet() + getPart2());
     }
 
     public String getBuffet() {
-        Elements buffet = doc.select("#buffet");
-        if (buffet.isEmpty()) {
-            Elements detailh3 = doc.select("#détails");
-            if(detailh3.isEmpty()) {
-                return "";
-            }
-            String buffethtml = "";
-            Elements elements = detailh3.parents().first().children();
-            // for each element, in elements.stream() start at h3 with id contains buffet and append html until next h3
-            boolean start = false;
-            for(int i = 0; i < elements.size(); i++) {
-                if(elements.get(i).tagName().equals("h3") && elements.get(i).id().contains("buffet")) {
-                    start = true;
-                }
-                if(elements.get(i).tagName().equals("h3") && !elements.get(i).id().contains("buffet")) {
-                    start = false;
-                    continue;
-                }
-                if(start) {
-                    buffethtml += elements.get(i).outerHtml();
-                }
-            }
-            return buffethtml.replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+        Element buffet = doc.selectFirst("#buffet");
+        if (buffet != null) {
+            return buffet.html();
         }
-        return buffet.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+        Element buffetElement = doc.selectFirst("h3[id*='buffet']");
+        if (buffetElement == null) {
+            return "";
+        }
+        String buffetHtml = buffetElement.outerHtml();
+        while ((buffetElement = buffetElement.nextElementSibling()) != null &&
+            !"h3".equals(buffetElement.tagName())) {
+            buffetHtml+= buffetElement.outerHtml();
+        }
+        return buffetHtml;
     }
 
     @Override
     public String getPart1() {
-        Elements part1 = doc.select("#part1");
-        if(part1.isEmpty()) {
-            Elements detailh3 = doc.select("#détails");
-            if(detailh3.isEmpty()) {
-                return "";
-            }
-            String part1html = "";
-            Elements elements = detailh3.parents().first().children();
-            // for each element, in elements.stream() start at h3 with id détail and append html until next h3
-            boolean start = false;
-            for(int i = 0; i < elements.size(); i++) {
-                if(elements.get(i).tagName().equals("h2") && elements.get(i).id().equals("détails")) {
-                    start = true;
-                    continue;
-                }
-                if(elements.get(i).tagName().equals("h2") && !elements.get(i).id().equals("détails")) {
-                    start = false;
-                    continue;
-                }
-                if(elements.get(i).tagName().equals("h3") && elements.get(i).id().contains("buffet")) {
-                    start = false;
-                    continue;
-                }
-                if(start) {
-                    part1html += elements.get(i).outerHtml();
-                }
-            }
-            return part1html.replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
-
+        Element part1 = doc.selectFirst("#part1");
+        if (part1 != null) {
+            return part1.html();
         }
-        return part1.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+        Elements detailh3 = doc.select("#détails");
+        if(detailh3.isEmpty()) {
+            return "";
+        }
+        String part1html = "";
+        Elements elements = detailh3.parents().first().children();
+        // for each element, in elements.stream() start at h3 with id détail and append html until next h3
+        boolean start = false;
+        for(int i = 0; i < elements.size(); i++) {
+            if(elements.get(i).tagName().equals("h2") && elements.get(i).id().equals("détails")) {
+                start = true;
+                continue;
+            }
+            if(elements.get(i).tagName().equals("h2") && !elements.get(i).id().equals("détails")) {
+                start = false;
+                continue;
+            }
+            if(elements.get(i).tagName().equals("h3") && elements.get(i).id().contains("buffet")) {
+                start = false;
+                continue;
+            }
+            if(start) {
+                part1html += elements.get(i).outerHtml();
+            }
+        }
+        return part1html;
     }
 
     @Override
@@ -138,30 +132,25 @@ public class HtmlEventPage implements EventPage {
                     part2html += elements.get(i).outerHtml();
                 }
             }
-            return part2html.replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+            return part2html;
         }
-        return part2.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+        return part2.first().html();
     }
 
     @Override
     public String getDateTime() {
-        Elements dateTimeElement = doc.select("#datetime");
-        if (dateTimeElement.isEmpty()) {
-            // in the section starting with h2 id="date-et-lieu", get the first ul li element
-            Elements elements = doc.select("#date-et-lieu").parents().first().children();
-            for(int i = 0; i < elements.size(); i++) {
-                if(elements.get(i).tagName().equals("ul")) {
-                    Elements lis = elements.get(i).children();
-                    for(int j = 0; j < lis.size(); j++) {
-                        if(lis.get(j).tagName().equals("li")) {
-                            return lis.get(j).text();
-                        }
-                    }
-                }
-            }
-
+        Element dateTimeElement = doc.selectFirst("#datetime");
+        if (dateTimeElement != null) {
+            return dateTimeElement.text();
         }
-        return dateTimeElement.first().text();
+        // in the section starting with h2 id="date-et-lieu", get the first ul li element
+        Element dateEtLieuElement = doc.selectFirst("#date-et-lieu + ul > li");
+        if (dateEtLieuElement == null) {
+            throw new EventPageCheckException(
+                "The page should contain an element with the id \"date-et-lieu\"."
+            );
+        }
+        return dateEtLieuElement.text();
     }
 
     @Override
@@ -170,7 +159,7 @@ public class HtmlEventPage implements EventPage {
         if (isVirtual()) {
             eventDateTime = eventDateTime.minusMinutes(15);
         }
-        return eventDateTime.format(DateTimeFormatter.ISO_INSTANT).replace(":", "").replace("-", "");
+        return eventDateTime.format(ISO_INSTANT).replace(":", "").replace("-", "");
     }
 
     private ZonedDateTime getEventZonedDateTime() {
@@ -185,7 +174,7 @@ public class HtmlEventPage implements EventPage {
         } else {
             eventDateTime = eventDateTime.plusMinutes(180);
         }
-        return eventDateTime.format(DateTimeFormatter.ISO_INSTANT).replace(":", "").replace("-", "");
+        return eventDateTime.format(ISO_INSTANT).replace(":", "").replace("-", "");
     }
 
     ZonedDateTime parseDateTime(String datetimeInput) {
@@ -204,23 +193,19 @@ public class HtmlEventPage implements EventPage {
 
     @Override
     public String getLocation() {
-        Elements locationElement = doc.select("#location a");
-        if (locationElement.isEmpty()) {
+        Element locationElement = doc.selectFirst("#location a");
+        if (locationElement == null) {
             // in the section starting with h2 id="date-et-lieu", get the second li element
-            Elements elements = doc.select("#date-et-lieu").parents().first().getElementsByTag("li");
-            if(elements.size() > 1) {
-                locationElement = elements.get(1).getElementsByTag("a");
-            }
-            else {
-                return "";
-            }
+            locationElement = doc.selectFirst("#date-et-lieu + ul > li:eq(1) > a");
         }
-
-        String attr = locationElement.first().attr("href");
-        if (attr.startsWith("/")) {
-            attr = "https://www.parisjug.org" + attr;
+        if (locationElement == null) {
+            return "";
         }
-        return attr;
+        String location = locationElement.attr("href");
+        if (location.startsWith("/")) {
+            location = ABSOLUTE_URL + location;
+        }
+        return location;
     }
 
     @Override
@@ -234,16 +219,16 @@ public class HtmlEventPage implements EventPage {
     }
 
     String encode(String str) {
-        return URLEncoder.encode(str, StandardCharsets.UTF_8);
+        return URLEncoder.encode(str, UTF_8);
     }
 
     @Override
     public String getIntro() {
-        Elements intro = doc.select("#intro");
-        if (intro.isEmpty()) {
+        Element intro = this.doc.selectFirst("#intro");
+        if (intro == null) {
             return "";
         }
-        return intro.first().html().replaceAll("href=\"/", "href=\"https://www.parisjug.org/");
+        return convertToAbsoluteLinks(intro.html());
     }
 
     @Override
@@ -251,4 +236,7 @@ public class HtmlEventPage implements EventPage {
         return getTitle().contains("Soirée Virtuelle");
     }
 
+    private static String convertToAbsoluteLinks(String html) {
+        return html.replaceAll("href=\"/", "href=\"" + ABSOLUTE_URL + "/");
+    }
 }
